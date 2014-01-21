@@ -43,11 +43,14 @@ Run for additional options.
 
 Donations towards further development:
 -------------------------
-** blixnood **
+*	**blixnood**
+
 	`BTC` 1QAA3d7kS1vsLBSJbYerudEpRhcsHpYkYi
+
 	`LTC` LeNcnU2o9MG5acmmvZvXCRPr8wXKZWzrge
 
-** forrestv **
+*	**forrestv**
+
 	`BTC` 1HNeqi3pJRNvXybNX4FKzZgYJsdTSqJTbk
 
 Official wiki :
