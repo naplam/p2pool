@@ -1,6 +1,12 @@
+Clone both P2Pool and updated frontend:
+-------------------------
+When cloning this repo, use `git clone --recursive https://github.com/blixnood/p2pool` and 
+you'll checkout the frontend repo along with the P2Pool repo.
+
 Requirements:
 -------------------------
 Generic:
+* Litecoin >=0.8.6.2
 * Bitcoin >=0.8.5
 * Python >=2.6
 * Twisted >=10.0.0
@@ -20,16 +26,16 @@ Windows:
 
 Running P2Pool:
 -------------------------
-To use P2Pool, you must be running your own local bitcoind. For standard
+To use P2Pool, you must be running your own local litecoind. For standard
 configurations, using P2Pool should be as simple as:
 
     python run_p2pool.py
 
-Then run your miner program, connecting to 127.0.0.1 on port 9332 with any
+Then run your miner program, connecting to 127.0.0.1 on port 9327 with any
 username and password.
 
 If you are behind a NAT, you should enable TCP port forwarding on your
-router. Forward port 9333 to the host running P2Pool.
+router. Forward port 9338 to the host running P2Pool.
 
 Run for additional options.
 
@@ -37,7 +43,12 @@ Run for additional options.
 
 Donations towards further development:
 -------------------------
-    1HNeqi3pJRNvXybNX4FKzZgYJsdTSqJTbk
+** blixnood **
+	`BTC` 1QAA3d7kS1vsLBSJbYerudEpRhcsHpYkYi
+	`LTC` LeNcnU2o9MG5acmmvZvXCRPr8wXKZWzrge
+
+** forrestv **
+	`BTC` 1HNeqi3pJRNvXybNX4FKzZgYJsdTSqJTbk
 
 Official wiki :
 -------------------------
@@ -45,14 +56,15 @@ https://en.bitcoin.it/wiki/P2Pool
 
 Alternate web front end :
 -------------------------
-* https://github.com/hardcpp/P2PoolExtendedFrontEnd
+* https://github.com/blixnood/P2PoolExtendedFrontEnd
 
 Notes for Litecoin:
 =========================
 Requirements:
 -------------------------
-In order to run P2Pool with the Litecoin network, you would need to build and install the
-ltc_scrypt module that includes the scrypt proof of work code that Litecoin uses for hashes.
+In order to run P2Pool with the Litecoin network (or any scrypt coin's network), you would 
+need to build and install the ltc_scrypt module that includes the scrypt proof of work code 
+that Litecoin uses for hashes.
 
 Linux:
 
@@ -83,16 +95,15 @@ http://stackoverflow.com/questions/6034390/compiling-with-cython-and-mingw-produ
 
 Running P2Pool:
 -------------------------
-Run P2Pool with the "--net litecoin" option.
+Run P2Pool with the --net option.
+
+* Litecoin	"--net litecoin"     port 9327
+* Bitcoin	"--net bitcoin"     port 9332
+* Dogecoin	"--net dogecoin"     port 22550
+* UnitedScryptCoin	"--net unitedscryptcoin"   port 23322
+
 Run your miner program, connecting to 127.0.0.1 on port 9327.
 Forward port 9338 to the host running P2Pool.
-
-Litecoin's use of ports 9332 and 9332 conflicts with P2Pool running on
-the Bitcoin network. To avoid problems, add these lines to litecoin.conf
-and restart litecoind:
-
-    rpcport=10332
-    port=10333
 
 Sponsors:
 -------------------------
