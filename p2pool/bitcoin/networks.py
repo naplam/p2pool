@@ -156,6 +156,48 @@ nets = dict(
         DUMB_SCRYPT_DIFF=2**16,
         DUST_THRESHOLD=0.03e8,
     ),
+    maxcoin=math.Object(
+        P2P_PREFIX='f9bebbd2'.decode('hex'),
+        P2P_PORT=8668,
+        ADDRESS_VERSION=110, #110; 127 for testnet
+        RPC_PORT=8669,
+        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
+            'maxcoinaddress' in (yield bitcoind.rpc_help())
+		and not (yield bitcoind.rpc_getinfo())['testnet']
+        )),
+        SUBSIDY_FUNC=lambda height: 1*10000000 >> (height + 1)//1080000,
+	POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('max_sha3').getPoWHash(data)),
+	BLOCK_PERIOD=30,
+        SYMBOL='MAX',
+        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'MaxCoin') if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/Maxcoin/') if platform.system() == 'Darwin' else os.path.expanduser('~/.maxcoin'), 'maxcoin.conf'),
+        BLOCK_EXPLORER_URL_PREFIX='http://blockchain.info/block/',
+        ADDRESS_EXPLORER_URL_PREFIX='http://blockchain.info/address/',
+        TX_EXPLORER_URL_PREFIX='http://blockchain.info/tx/',
+        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
+        DUMB_SCRYPT_DIFF=2**16,
+        DUST_THRESHOLD=0.03e8,
+    ),
+    maxcoin_testnet=math.Object(
+        P2P_PREFIX='0b11bb07'.decode('hex'), #new is 0b11bb07
+        P2P_PORT=18668,
+        ADDRESS_VERSION=127, #110; 127 for testnet
+        RPC_PORT=18669,
+        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
+            'maxcoinaddress' in (yield bitcoind.rpc_help()) 
+              and  (yield bitcoind.rpc_getinfo())['testnet']
+        )),
+        SUBSIDY_FUNC=lambda height: 1*10000000 >> (height + 1)//1080000,
+        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('max_hash').getPoWHash(data)),
+        BLOCK_PERIOD=30,
+        SYMBOL='MAX',
+        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'MaxCoin') if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/Maxcoin/') if platform.system() == 'Darwin' else os.path.expanduser('~/.maxcoin'), 'maxcoin.conf'),
+        BLOCK_EXPLORER_URL_PREFIX='http://blockchain.info/block/',
+        ADDRESS_EXPLORER_URL_PREFIX='http://blockchain.info/address/',
+        TX_EXPLORER_URL_PREFIX='http://blockchain.info/tx/',
+        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
+        DUMB_SCRYPT_DIFF=2**16,
+        DUST_THRESHOLD=0.03e8,
+    ),
     unitedscryptcoin=math.Object(
         P2P_PREFIX='fbc0b6db'.decode('hex'),
         P2P_PORT=23328,

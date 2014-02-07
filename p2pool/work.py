@@ -352,7 +352,7 @@ class WorkerBridge(worker_interface.WorkerBridge):
             
             user, _, _, _ = self.get_user_details(user)
             assert header['previous_block'] == ba['previous_block']
-            assert header['merkle_root'] == bitcoin_data.check_merkle_link(bitcoin_data.hash256(new_packed_gentx), merkle_link)
+            assert header['merkle_root'] == bitcoin_data.check_merkle_link(bitcoin_data.hash2561(new_packed_gentx), merkle_link)
             assert header['bits'] == ba['bits']
             
             on_time = self.new_work_event.times == lp_count
